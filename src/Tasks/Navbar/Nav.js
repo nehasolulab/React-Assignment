@@ -8,6 +8,8 @@ const Nav = () => {
             <ul className="nav-ul">
                 <li><NavLink className={({ isActive }) =>
                         isActive ? 'active-navlink' : ''} to="/">Task 1</NavLink></li>
+                <li><NavLink className={({ isActive }) =>
+                        isActive ? 'active-navlink' : ''} to="/task-2">Task 2</NavLink></li>
             </ul>
         </>
     )
