@@ -1,4 +1,5 @@
 import StateChange from "./Tasks/Task-1/StateChange";
+import GetRequest from "./Tasks/Task-2/GetRequest";
 import Nav from "./Tasks/Navbar/Nav";
 import Error from "./Tasks/Error/Error";
 import {Route,Routes} from "react-router-dom";
@@ -9,6 +10,7 @@ function App() {
       <Nav/>
       <Routes>
         <Route exact path='/' element = {<StateChange/>}/>
+        <Route exact path='/task-2' element = {<GetRequest/>}/>
         <Route path="*" element = {<Error/>} />
       </Routes>
     </div>

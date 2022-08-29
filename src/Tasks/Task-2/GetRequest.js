@@ -1,0 +1,57 @@
+import './GetRequest.css';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+
+const GetRequest = () => {
+    const [isLoading,setIsLoading] = useState(true);
+    const [infofilter,setInfofilter] = useState([]);
+
+    const personInfo = async() =>{
+        const infoResult = await axios.get("https://randomuser.me/api/?results=12");
+        const inforResultArray = infoResult.data.results;
+        const filteredInforResultArray = await inforResultArray.map((el)=>{
+            return ({name:el.name,location:el.location,picture:el.picture})
+        })
+        setInfofilter(filteredInforResultArray);
+        setIsLoading(false);
+    }
+
+    useEffect(()=>{
+        personInfo()  ;
+    },[]);
+
+
+    return (
+        <div className="mainContainer">
+            <p><b>Task:</b> Making frontend application to call http get request and display data </p>
+            {
+                !isLoading ? (
+                    <div className="row">
+                        {
+                            infofilter.map((person,index)=>{
+                                return(
+                                    <div className="col-3 my-3" key = {index}>
+                                        <div className="card">
+                                            <div className="card-body d-flex">
+                                            <img src={person.picture.thumbnail} className="card-img mb-auto me-3" alt="..." />
+                                    <div>
+                                        <p className='mb-1'><b>Name: </b>{person.name.first}</p>
+                                        <p className='mb-1'><b>Address: </b>{person.location.city} , {person.location.country}</p>
+                                        <p><b>ZipCode: </b>{person.location.postcode}</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            </div>
+                    )
+                })
+            }
+            </div>
+                ):<h2>.....</h2> 
+            }
+            
+        </div>
+    )
+        }
+
+export default GetRequest;
