@@ -5,21 +5,21 @@ import React, { useEffect, useState } from "react";
 const GetRequest = () => {
     const [info,setInfo] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
+    const infofilter = [];
 
-    useEffect (()=>{
-         async function personInfo(){
-            await axios.get("https://randomuser.me/api/?results=12")
-            .then(response=>{
-                setInfo(response.data.results)
-            })
-           .then(info => {
-            setIsLoading(false);
-           })
-        }
+    const personInfo = async() =>{
+        const infoResult = await axios.get("https://randomuser.me/api/?results=12");
+        const inforResultArray = infoResult.data.results;
+        inforResultArray.map((el)=>{
+            return (infofilter.push({name:el.name,location:el.location,picture:el.picture}))
+        })
+        setInfo(infofilter);
+        setIsLoading(false);
+    }
 
-        
-        personInfo()
-    },[])
+    useEffect(()=>{
+        personInfo()  ;
+    },[]);
 
 
     return (
