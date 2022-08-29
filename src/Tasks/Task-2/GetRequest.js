@@ -3,17 +3,16 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const GetRequest = () => {
-    const [info,setInfo] = useState([]);
     const [isLoading,setIsLoading] = useState(true);
-    const infofilter = [];
+    const [infofilter,setInfofilter] = useState([]);
 
     const personInfo = async() =>{
         const infoResult = await axios.get("https://randomuser.me/api/?results=12");
         const inforResultArray = infoResult.data.results;
-        inforResultArray.map((el)=>{
-            return (infofilter.push({name:el.name,location:el.location,picture:el.picture}))
+        const filteredInforResultArray = await inforResultArray.map((el)=>{
+            return ({name:el.name,location:el.location,picture:el.picture})
         })
-        setInfo(infofilter);
+        setInfofilter(filteredInforResultArray);
         setIsLoading(false);
     }
 
@@ -29,7 +28,7 @@ const GetRequest = () => {
                 !isLoading ? (
                     <div className="row">
                         {
-                            info.map((person,index)=>{
+                            infofilter.map((person,index)=>{
                                 return(
                                     <div className="col-3 my-3" key = {index}>
                                         <div className="card">
