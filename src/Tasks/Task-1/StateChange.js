@@ -21,11 +21,11 @@ const StateChange = () => {
     }
 
     return(
-        <div className="state-change-container">
+        <div className="state-change-container wrapper">
             <div className="sub-container">
                 <h1>{num}</h1>
                 <div className="btn-container">
-                    <button onClick={Increment}>+</button>
+                    <button className="me-3" onClick={Increment}>+</button>
                     <button onClick={Decrement}>-</button>
                 </div>
             </div>
