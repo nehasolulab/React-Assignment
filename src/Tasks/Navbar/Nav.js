@@ -10,6 +10,8 @@ const Nav = () => {
                         isActive ? 'active-navlink' : ''} to="/">Task 1</NavLink></li>
                 <li><NavLink className={({ isActive }) =>
                         isActive ? 'active-navlink' : ''} to="/task-2">Task 2</NavLink></li>
+                <li><NavLink className={({ isActive }) =>
+                        isActive ? 'active-navlink' : ''} to="/task-3">Task 3</NavLink></li>
             </ul>
         </>
     )
