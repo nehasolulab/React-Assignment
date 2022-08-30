@@ -1,20 +1,25 @@
-const initialState =0;
+import { INCREMENT,DECREMENT } from "../constants";
+const initialState = {
+    value:0,
+    errorMsg:""
+};
 
 const StateChange = (state=initialState , action) => {
     switch (action.type){
-        case "INCREMENT":
-            return state + action.payload;
-        case "DECREMENT":
-            if (state>0){
-                return state - action.payload;
+        case INCREMENT:
+            return {...state,value:action.payload+state.value,errorMsg:""}
+        case DECREMENT:
+            if (state.value>0){
+                return {...state,value:state.value-action.payload,errorMsg:""}
             }
             else {
-                alert ("Number smaller than 0 is not allow");
+                // value less than 0
+                return {...state,errorMsg:"Number below 0 is not allow"}
             }
-        break;
         default:
             return state;
     }
 }
 
 export default StateChange;
+
